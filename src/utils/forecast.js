@@ -6,13 +6,13 @@ const forecast = (latitude, longitude, callback) => {
     request({ url, json:true},(error,response)=>{
         const { body } = response
         const { error:errorResponse, current } = body
-        const { weather_descriptions, temperature, feelslike} = current
+        const { weather_descriptions, temperature, feelslike, humidity} = current
         if(error){
             callback('Unable to connect',undefined)
         }else if (errorResponse){
             callback('Unable to find location',undefined)
         }else {
-            callback(undefined, weather_descriptions[0] + '. It is currently ' + temperature + ' its feel like a ' + feelslike)
+            callback(undefined, weather_descriptions[0] + '. It is currently ' + temperature + ' its feel like a ' + feelslike + ' and the humidity is ' + humidity)
         }
     })
 }
